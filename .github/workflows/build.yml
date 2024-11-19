@@ -27,7 +27,7 @@ jobs:
 
       # What compiler do we have?
       - name: Run build for prog1
-        run: cс --version
+        run: echo cс --version
 
       # Runs build using the runners shell
       - name: Run build for prog1
