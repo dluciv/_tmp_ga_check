@@ -25,6 +25,10 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
+      # What compiler do we have?
+      - name: Run build for prog1
+        run: cс --version
+
       # Runs build using the runners shell
       - name: Run build for prog1
         run: |
