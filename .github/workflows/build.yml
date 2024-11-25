@@ -41,8 +41,14 @@ jobs:
         run: env
 
   test:
+    # Зависимости
     needs:
       - setup_and_build
+
+    # Контейнер, в котором запускается задание
+    runs-on: ubuntu-latest
+
+    # Шаги задания
     steps:
       - run: |
           echo Пока делать нечего
