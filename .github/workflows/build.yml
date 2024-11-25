@@ -48,7 +48,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: prog1_executable
-          path: $GITHUB_WORKSPACE/prog1
+          path: ${{ github.workspace }}/prog1
 
   test:
     # Зависимости
@@ -66,9 +66,8 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: prog1_executable
-          path: $GITHUB_WORKSPACE/prog1
+          path: ${{ github.workspace }}/prog1
 
       - run: |
           cd prog1
           ./prog1_executable
-
