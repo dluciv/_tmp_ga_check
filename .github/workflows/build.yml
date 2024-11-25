@@ -40,9 +40,7 @@ jobs:
       - name: Собираем программу
         run: |
           cd prog1
-          pwd
           clang -o prog1_executable main.c
-          ls -la
 
       - name: Сохраняем результаты билда для тестирования
         uses: actions/upload-artifact@v4
@@ -68,6 +66,10 @@ jobs:
           name: prog1_executable
           path: ${{ github.workspace }}/prog1
 
-      - run: |
+      # Да, оно не исполнимое после загрузки
+      # См. https://github.com/actions/upload-artifact/issues/38
+      - name: Запускаем тестирование (допустим =))
+        run: |
           cd prog1
+          chmod u+x prog1_executable
           ./prog1_executable
