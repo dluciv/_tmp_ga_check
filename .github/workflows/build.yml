@@ -41,7 +41,7 @@ jobs:
         run: |
           cd prog1
           clang -o prog1_executable main.c
-          echo Компилятор вернул код $0
+          echo Компилятор вернул код $?
 
       - name: Сохраняем результаты билда для тестирования
         uses: actions/upload-artifact@v4
