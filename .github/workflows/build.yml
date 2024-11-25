@@ -40,8 +40,9 @@ jobs:
       - name: Собираем программу
         run: |
           cd prog1
+          pwd
           clang -o prog1_executable main.c
-          echo Компилятор вернул код $?
+          ls -la
 
       - name: Сохраняем результаты билда для тестирования
         uses: actions/upload-artifact@v4
