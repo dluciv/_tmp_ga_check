@@ -61,7 +61,7 @@ jobs:
     # Шаги задания
     steps:
       - name: Загружаем результаты билда для тестирования
-      - uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v4
         with:
           name: prog1_executable
           path: $GITHUB_WORKSPACE/prog1
