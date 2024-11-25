@@ -40,9 +40,9 @@ jobs:
       - name: env
         run env
 
-  test:
-    needs:
-      - setup_and_build
-    steps:
-      - run: |
-          echo Пока делать нечего
+    test:
+      needs:
+        - setup_and_build
+      steps:
+        - run: |
+            echo Пока делать нечего
