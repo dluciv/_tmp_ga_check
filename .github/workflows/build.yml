@@ -22,6 +22,7 @@ jobs:
       - name: Печать окружения. Окружение — это интересно.
         run: env
 
+      # Егор Тенсин кстати учился на Матмехе СПбГУ
       - name: Установка Clang
         uses: egor-tensin/setup-clang@v1
         with:
@@ -30,33 +31,42 @@ jobs:
 
       - name: Установка make и некоторых других инструментов
         run: |
-          apt update
-          apt-get install build-essential
+          sudo apt-get update
+          sudo apt-get install build-essential
 
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: Берём исходники
+      - name: Берём исходники из Гита
         uses: actions/checkout@v4
 
-      # What compiler do we have?
-      - name: Run build for prog1
-        run:  echo cс --version
-
-      # Runs build using the runners shell
       - name: Собираем программу
         run: |
           cd prog1
-          cc main.c
+          cc -o prog1_executable main.c
 
+      - name: Сохраняем результаты билда для тестирования
+        uses: actions/upload-artifact@v4
+        with:
+          name: prog1_executable
+          path: $GITHUB_WORKSPACE/prog1
 
   test:
     # Зависимости
     needs:
       - setup_and_build
 
+    name: Тестирование
+
     # Контейнер, в котором запускается задание
     runs-on: ubuntu-latest
 
     # Шаги задания
     steps:
+      - name: Загружаем результаты билда для тестирования
+      - uses: actions/download-artifact@v4
+        with:
+          name: prog1_executable
+          path: $GITHUB_WORKSPACE/prog1
+
       - run: |
-          echo Пока делать нечего
+          cd prog1
+          ./prog1_executable
+
